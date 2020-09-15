@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  
+  
+  <head>
+    <base target="_top">
+    <meta charset="utf-8">
+    <?!= HtmlService.createHtmlOutputFromFile('Stylesheet').getContent(); ?>
+  </head>
+  <body>
+        
+        <div class="container">  
+         
+        <form id="contact" action="" method="post">
+          <h3 id="markup">Neue Rechnung</h3>
+
+          <fieldset class="box">
+            <label>Rechnungssteller Profil-Nr.</label><input class="profilInput" type="number" id="tentacles" name="tentacles" min="1" max="6" required>
+          </fieldset>
+          
+          <fieldset class="box">
+            <label>Kunde Nr.</label>
+            <input type="number" class="customerInput" id="tentacles" name="tentacles" min="1" max="25">
+          </fieldset>
+
+          <fieldset class="box" >
+            <label>Leistungsdatum -/ zeitraum</label>
+            <select type="drop" class="leistungsInput" tabindex="1" id="profileSelect" required autofocus>
+              <option value="" disabled selected hidden>wählen</option>
+              <option value="Leistungsdatum">Leistungsdatum</option>
+              <option value="Leistungszeitraum">Leistungszeitraum</option>
+            </select>
+          </fieldset>
+          
+          
+          
+          
+          <fieldset>
+            <label>Erfüllung</label>
+            <input class="erfuellungsInput" placeholder="zB. 12.01.2020, Jan-Mrz 2020" type="email" tabindex="2" required>
+          </fieldset>
+          
+          
+          <fieldset class="box" >
+            <label>Mail an</label>
+            <select class="mailanInput" type="drop" tabindex="1" id="profileSelect" required autofocus>
+              <option value="" disabled selected hidden>wählen</option>
+              <option value="Kunden">Kunden</option>
+              <option value="mich">mich</option>
+            </select>
+          </fieldset>
+          
+          <hr>
+          
+          <table id="customers">
+            <tr>
+              <th>Artikel</th>
+              <th>Ah/Stk.</th> 
+            </tr>
+            <tr>
+              <td><input class="artikelInput1" type="number" id="tentacles" name="tentacles" min="1" max="25"></td>
+              <td><input class="ahInput1" type="number" id="tentacles" name="tentacles" min="0"></td> 
+            </tr>
+            <tr>
+              <td><input class="artikelInput2" type="number" id="tentacles" name="tentacles" min="1" max="25"></td>
+              <td><input class="ahInput2" type="number" id="tentacles" name="tentacles" min="0"></td> 
+            </tr>
+            <tr>
+              <td><input class="artikelInput3" type="number" id="tentacles" name="tentacles" min="1" max="25"></td>
+              <td><input class="ahInput3" type="number" id="tentacles" name="tentacles" min="0"></td> 
+            </tr>
+            <tr>
+              <td><input class="artikelInput4" type="number" id="tentacles" name="tentacles" min="1" max="25"></td>
+              <td><input class="ahInput4" type="number" id="tentacles" name="tentacles" min="0"></td> 
+            </tr>
+            <tr>
+              <td><input class="artikelInput5" type="number" id="tentacles" name="tentacles" min="1" max="25"></td>
+              <td><input class="ahInput5" type="number" id="tentacles" name="tentacles" min="0"></td> 
+            </tr>
+            <tr>
+              <td><input class="artikelInput6" type="number" id="tentacles" name="tentacles" min="1" max="25"></td>
+              <td><input class="ahInput6" type="number" id="tentacles" name="tentacles" min="0"></td> 
+            </tr>
+          </table>
+          
+            <button class="submitBTN" type="button">erstellen und versenden</button>
+       
+        
+
+      </form>
+      
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <?!= HtmlService.createHtmlOutputFromFile('JSide').getContent(); ?>
+    
+  </body>
+</html>

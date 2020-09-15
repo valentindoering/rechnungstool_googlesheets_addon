@@ -1,0 +1,108 @@
+<script>
+
+$('.submitBTN').on('click', function() {
+    var profilInput = parseInt($(".profilInput").val())
+    var customerInput = parseInt($(".customerInput").val())
+    var leistungsInput = $(".leistungsInput").val()
+    var erfuellungsInput = $(".erfuellungsInput").val()
+    var mailanInput = $(".mailanInput").val()
+    
+    var positionenArray = [[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]]
+    var rowCounter = 0
+    for (var i = 1; i <= 6;i++) {
+      var artikel = $(".artikelInput"+i).val()
+      var ah = $(".ahInput"+i).val()
+
+      if (!isEmpty(artikel) && !isEmpty(ah) && artikel > 0 && artikel < 26 && ah > 0) {
+       positionenArray[rowCounter][0] = artikel
+       positionenArray[rowCounter][1] = ah
+       rowCounter++
+      } else {
+        positionenArray.pop()
+      }
+      
+    }
+    
+    if (profilInput >= 1 && profilInput <= 6){
+      if (customerInput >= 1 && customerInput <= 25){
+        if (leistungsInput === "Leistungsdatum" || leistungsInput === "Leistungszeitraum"){
+          if (erfuellungsInput !== "" && erfuellungsInput.length <= 15){
+            if (mailanInput === "Kunden" || mailanInput === "mich"){
+              if(positionenArray[0] != null) {
+
+                google.script.run.main(profilInput, customerInput, leistungsInput, erfuellungsInput, mailanInput, positionenArray)
+                
+              } else {
+                error("Du musst mindestens einen Artikel mit einer zugeordnetet Stückzahl verkaufen. In beide Kästchen bitte nur Ziffern eintragen")
+              }
+            } else {
+              error("Mail an: 'Kunden' oder 'mich' wählen")
+            }
+          } else {
+            error("Erfüllung mit maximal 15 Zeichen beschreiben")
+          }
+        } else {
+          error("Leistungsdatum/ Leistungszeitraum wählen")
+        }
+      } else {
+        error("Kunden Nr. muss zwischen 1 und 25 liegen")
+      }
+    } else {
+      error("Profil Nr. muss zwischen 1 und 6 liegen")
+    }
+    
+    
+    });
+
+ 
+    function isEmpty(val){
+    return (val === undefined || val == null || val.length <= 0 || isNaN(val)) ? true : false;
+  }
+    
+    
+    function error(text) {
+      google.script.run.alert("Ausfüll-Fehler: "+ text)
+     }
+     
+      alert("Profile: "+profilInput+",Kunde: "+customerInput+",Leistung "+leistungsInput+",Erfuellung "+erfuellungsInput+",Mailan "+mailanInput+" , artikelInput: "+artikelInput+" ,ahInput: "+ahInput)
+ 
+
+
+
+  /*
+  var options = []
+  for (var i = 0; i < 6;i++) {
+    if (profileArray[0][i] !== "") {
+      options.push(profileArray[0][i])
+      google.script.run.log("Adding: "+profileArray[0][i])
+    }
+  }
+  
+  for (var i = 0; i < options.length; i++) {
+    $("#profileSelect").append('<option>'+options[i]+'</option>');
+  }
+  
+  function showValue(value) {
+   $("#markup").value = value;
+}
+
+*/
+//_________________________________________________________
+/* THIS FUCKING WORKS
+  $('#geilerButton').on('click', function() {
+    google.script.run.loog("aha")
+    google.script.run.withSuccessHandler(onSuccess).withFailureHandler(onFailure).marray(); // For every function with return value
+    $("#output").text("Change")
+  });
+
+
+function onSuccess(data) {
+  alert('OnSucces: '+ data)
+  //google.script.host.close();
+}
+
+function onFailure(error){
+  alert('onFailure: ' + error);
+}
+*/
+</script>
